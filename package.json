@@ -1,0 +1,15 @@
+{
+  "name": "midterm-group5",
+  "version": "1.0.0",
+  "description": "PHP-based midterm project for Group 5",
+  "main": "index.php",
+  "scripts": {
+    "start": "php -S localhost:8000",
+    "dev": "php -S localhost:8000"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {},
+  "devDependencies": {}
+}
