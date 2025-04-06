@@ -10,7 +10,7 @@ jobs:
   build:
     runs-on: windows-latest
     permissions:
-      contents: read # This is required for actions/checkout
+      contents: read
 
     steps:
       - uses: actions/checkout@v4
@@ -39,8 +39,8 @@ jobs:
       name: 'Production'
       url: ${{ steps.deploy-to-webapp.outputs.webapp-url }}
     permissions:
-      id-token: write # This is required for requesting the JWT
-      contents: read # This is required for actions/checkout
+      id-token: write
+      contents: read
 
     steps:
       - name: Download artifact from build job
@@ -51,10 +51,11 @@ jobs:
       - name: Login to Azure
         uses: azure/login@v2
         with:
-          client-id: 'ec1de8b0-4d45-418d-b057-840f2824de04'  # Your Client ID
-          tenant-id: '1a6baf42-2f45-4410-87b7-599417a8df39'  # Your Tenant ID
-          client-secret: 'ygR8Q~mSdXuGeQNfQOoirUHHq92fRMGNHraIna3I'  # Replace with your actual Client Secret
-          subscription-id: '59d8d7b9-5130-4a1f-99cf-e43223b08cf8'  # Your Subscription ID
+          client-id: 'ec1de8b0-4d45-418d-b057-840f2824de04'
+          tenant-id: '1a6baf42-2f45-4410-87b7-599417a8df39'
+          client-secret: ${{ secrets.AZURE_CLIENT_SECRET }}
+          subscription-id: '59d8d7b9-5130-4a1f-99cf-e43223b08cf8'
+          auth-type: 'client-secret'  # Optional, specify client-secret explicitly
 
       - name: 'Deploy to Azure Web App'
         uses: azure/webapps-deploy@v3
